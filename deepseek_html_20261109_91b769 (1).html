@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PixelForge — Free Video & Graphic Design Assets</title>
+<style>
+:root{
+  --bg:#0a0e1a; --card:#111827; --card2:#1a2332; --line:#1f2937;
+  --teal:#14b8a6; --teal-dark:#0d9488; --purple:#8b5cf6; --pink:#ec4899;
+  --ink:#f1f5f9; --muted:#94a3b8;
+  --radius:16px; --shadow:0 4px 24px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--teal);text-decoration:none}
+button{cursor:pointer;border:0;background:none;font:inherit;color:inherit}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,14,26,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);transition:.3s}
+nav.scrolled{background:rgba(10,14,26,.98);box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-.5px}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--teal),var(--purple));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--muted);font-weight:500;font-size:14px;transition:.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;padding:10px 20px;border-radius:10px;font-weight:700;font-size:13px;transition:.2s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(20,184,166,.4)}
+.menu-toggle{display:none;font-size:24px;color:var(--ink)}
+
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 24px 80px;position:relative;overflow:hidden;text-align:center}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.4;animation:float 15s ease-in-out infinite}
+.orb1{width:500px;height:500px;background:var(--teal);top:-150px;left:-100px}
+.orb2{width:400px;height:400px;background:var(--purple);bottom:-100px;right:-100px;animation-delay:-5s}
+.orb3{width:350px;height:350px;background:var(--pink);top:40%;right:20%;animation-delay:-10s;opacity:.25}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-40px) scale(1.15)}}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.3);border-radius:999px;font-size:13px;color:var(--teal);font-weight:600;margin-bottom:24px}
+.hero-badge .dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.hero h1{font-size:clamp(36px,7vw,72px);font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:20px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--teal),var(--purple),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:600px;margin:0 auto 36px;line-height:1.6}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 32px;border-radius:12px;font-weight:700;font-size:15px;transition:.25s}
+.btn-primary{background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;box-shadow:0 8px 24px rgba(20,184,166,.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(20,184,166,.5)}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:60px;flex-wrap:wrap}
+.hstat{text-align:center}
+.hstat b{font-size:32px;font-weight:900;background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.hstat span{font-size:13px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+
+section{padding:80px 24px;max-width:1300px;margin:0 auto}
+.sec-header{text-align:center;margin-bottom:48px}
+.sec-header h2{font-size:clamp(28px,4vw,42px);font-weight:900;letter-spacing:-1px;margin-bottom:12px}
+.sec-header p{color:var(--muted);font-size:16px;max-width:560px;margin:0 auto}
+
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.filters button{padding:10px 20px;background:var(--card);border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;color:var(--muted);transition:.2s}
+.filters button:hover{border-color:var(--teal);color:var(--ink)}
+.filters button.active{background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;border-color:transparent}
+.search-wrap{max-width:500px;margin:0 auto 32px;position:relative}
+.search-wrap input{width:100%;padding:14px 20px 14px 48px;background:var(--card);border:1px solid var(--line);border-radius:12px;font-size:15px;color:var(--ink);outline:none;transition:.2s}
+.search-wrap input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(20,184,166,.15)}
+.search-wrap .icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px}
+
+.assets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.asset-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.3s;cursor:pointer;position:relative}
+.asset-card:hover{transform:translateY(-6px);border-color:var(--teal);box-shadow:0 12px 32px rgba(20,184,166,.2)}
+.asset-thumb{height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:48px}
+.asset-thumb.video{background:linear-gradient(135deg,#1e3a8a,#7c3aed)}
+.asset-thumb.graphic{background:linear-gradient(135deg,#be123c,#f59e0b)}
+.asset-thumb.fonts{background:linear-gradient(135deg,#047857,#14b8a6)}
+.asset-thumb.templates{background:linear-gradient(135deg,#7c2d12,#ea580c)}
+.asset-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.5));pointer-events:none}
+.asset-badge{position:absolute;top:12px;left:12px;padding:5px 12px;background:rgba(0,0,0,.7);backdrop-filter:blur(10px);border-radius:999px;font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.5px;z-index:2}
+.asset-info{padding:18px}
+.asset-info h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.asset-info p{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.asset-meta{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--line)}
+.asset-tags{display:flex;gap:6px}
+.asset-tags span{padding:4px 10px;background:rgba(20,184,166,.1);color:var(--teal);border-radius:6px;font-size:11px;font-weight:600}
+.dl-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--teal);color:#fff;border-radius:8px;font-size:12px;font-weight:700;transition:.2s}
+.dl-btn:hover{background:var(--teal-dark)}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-text h2{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:-1px;margin-bottom:20px}
+.about-text p{color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:16px}
+.about-features{display:grid;gap:16px;margin-top:24px}
+.feature{display:flex;gap:14px;align-items:flex-start}
+.feature-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--teal),var(--purple));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.feature b{display:block;margin-bottom:4px;font-size:15px}
+.feature span{color:var(--muted);font-size:13px;line-height:1.5}
+.about-visual{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden}
+.about-visual::before{content:"";position:absolute;top:-50%;right:-50%;width:100%;height:100%;background:radial-gradient(circle,rgba(139,92,246,.15),transparent 70%);pointer-events:none}
+.about-visual .big-icon{font-size:100px;margin-bottom:20px;position:relative;z-index:1}
+.about-visual h3{font-size:22px;font-weight:800;margin-bottom:10px;position:relative;z-index:1}
+.about-visual p{color:var(--muted);font-size:14px;position:relative;z-index:1}
+
+.contact-wrap{max-width:600px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:40px}
+.contact-form{display:grid;gap:16px}
+.contact-form label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+.contact-form input,.contact-form textarea{width:100%;padding:13px 16px;background:var(--card2);border:1px solid var(--line);border-radius:10px;font-size:14px;color:var(--ink);outline:none;transition:.2s;font-family:inherit}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(20,184,166,.15)}
+.contact-form textarea{resize:vertical;min-height:120px}
+.contact-form button{margin-top:8px;padding:15px;background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;border-radius:10px;font-weight:700;font-size:15px;transition:.2s}
+.contact-form button:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,184,166,.4)}
+
+footer{background:var(--card);border-top:1px solid var(--line);padding:48px 24px 24px;margin-top:80px}
+.footer-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand p{color:var(--muted);font-size:14px;line-height:1.7;margin-top:12px;max-width:300px}
+.footer-col h4{font-size:14px;font-weight:700;margin-bottom:16px;color:var(--ink)}
+.footer-col a{display:block;color:var(--muted);font-size:14px;margin-bottom:10px;transition:.2s}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{max-width:1300px;margin:0 auto;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:13px}
+
+/* ===== SOCIAL ICONS (ORIGINAL BRAND) ===== */
+.socials{display:flex;gap:12px;flex-wrap:wrap}
+.socials a{
+  width:44px;height:44px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  transition:.25s;
+  background:var(--card2);
+  border:1px solid var(--line);
+  position:relative;
+}
+.socials a:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.socials a svg{width:22px;height:22px;display:block}
+/* Brand colors on hover */
+.socials a.instagram:hover{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);border-color:transparent}
+.socials a.facebook:hover{background:#0866FF;border-color:transparent}
+.socials a.youtube:hover{background:#FF0000;border-color:transparent}
+.socials a.tiktok:hover{background:#000;border-color:transparent}
+.socials a.whatsapp:hover{background:#25D366;border-color:transparent}
+.socials a.instagram:hover svg,.socials a.facebook:hover svg,.socials a.youtube:hover svg,.socials a.tiktok:hover svg,.socials a.whatsapp:hover svg{fill:#fff}
+
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal-bg.show{display:flex}
+.modal{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);max-width:600px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;background:var(--card2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;transition:.2s}
+.modal-close:hover{background:var(--teal);color:#fff}
+.modal h2{font-size:24px;margin-bottom:16px}
+.modal p{color:var(--muted);line-height:1.6;margin-bottom:24px}
+.modal-actions{display:flex;gap:12px}
+
+.toast{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--teal);color:var(--ink);padding:16px 22px;border-radius:12px;font-size:14px;font-weight:600;box-shadow:0 12px 40px rgba(0,0,0,.5);z-index:300;transform:translateY(100px);opacity:0;transition:.3s;max-width:340px}
+.toast.show{transform:translateY(0);opacity:1}
+
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--card);flex-direction:column;padding:20px;gap:16px;border-bottom:1px solid var(--line)}
+  .nav-links.open{display:flex}
+  .menu-toggle{display:block}
+  .hero-stats{gap:24px}
+  .hstat b{font-size:26px}
+  .contact-wrap{padding:24px}
+  .modal{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">
+    <div class="logo-icon">🎨</div>
+    <span>PixelForge</span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="#home" onclick="closeNav()">Home</a>
+    <a href="#assets" onclick="closeNav()">Assets</a>
+    <a href="#about" onclick="closeNav()">About</a>
+    <a href="#contact" onclick="closeNav()">Contact</a>
+    <a href="#contact" class="nav-cta" onclick="closeNav()">Download Free</a>
+  </div>
+  <button class="menu-toggle" onclick="toggleNav()">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> 100% Free Assets • Updated Weekly</div>
+    <h1>Premium <span class="grad">Video & Graphic</span> Assets — Free Forever</h1>
+    <p>Download templates, overlays, transitions, fonts, and graphics — completely free. Built for professional video editors and graphic designers.</p>
+    <div class="hero-btns">
+      <a href="#assets" class="btn btn-primary">⬇ Browse Assets</a>
+      <a href="#about" class="btn btn-ghost">Learn More →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><b>500+</b><span>Free Assets</span></div>
+      <div class="hstat"><b>10K+</b><span>Downloads</span></div>
+      <div class="hstat"><b>100%</b><span>Free</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSETS -->
+<section id="assets">
+  <div class="sec-header">
+    <h2>Browse <span style="background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Assets</span></h2>
+    <p>Free resources for video editing and graphic design. Download everything without any hidden charges.</p>
+  </div>
+
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input id="searchInput" placeholder="Search assets... (e.g. YouTube intro, transitions, fonts)" oninput="filterAssets()">
+  </div>
+
+  <div class="filters">
+    <button class="active" data-cat="all" onclick="setFilter('all',this)">All</button>
+    <button data-cat="video" onclick="setFilter('video',this)">🎬 Video Templates</button>
+    <button data-cat="graphic" onclick="setFilter('graphic',this)">🎨 Graphics</button>
+    <button data-cat="fonts" onclick="setFilter('fonts',this)">🔤 Fonts</button>
+    <button data-cat="templates" onclick="setFilter('templates',this)">📐 Templates</button>
+  </div>
+
+  <div class="assets-grid" id="assetsGrid"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>Why <span style="background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">PixelForge</span>?</h2>
+      <p>We create premium-quality assets for video editors and graphic designers — completely free. No subscription, no credit card, no hidden fees.</p>
+      <div class="about-features">
+        <div class="feature"><div class="feature-icon">⚡</div><div><b>Fast Downloads</b><span>Direct download, no waiting, no ads.</span></div></div>
+        <div class="feature"><div class="feature-icon">🎯</div><div><b>Professional Quality</b><span>4K templates, HD overlays, premium fonts.</span></div></div>
+        <div class="feature"><div class="feature-icon">🔄</div><div><b>Weekly Updates</b><span>New assets added every single week.</span></div></div>
+        <div class="feature"><div class="feature-icon">💯</div><div><b>100% Free</b><span>No hidden charges, no limits, forever.</span></div></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="big-icon">🎨</div>
+      <h3>Made for Creators</h3>
+      <p>Specially designed for video editors, YouTubers, graphic designers, and social media creators.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-header">
+    <h2>Get in <span style="background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Touch</span></h2>
+    <p>Have a question, suggestion, or need a custom asset? Send us a message.</p>
+  </div>
+  <div class="contact-wrap">
+    <form class="contact-form" onsubmit="submitContact(event)">
+      <div><label>Your Name</label><input required placeholder="e.g. John Doe"></div>
+      <div><label>Email</label><input type="email" required placeholder="you@example.com"></div>
+      <div><label>Message</label><textarea required placeholder="Write your question or request..."></textarea></div>
+      <button type="submit">Send Message ✉️</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-icon">🎨</div><span>PixelForge</span></div>
+      <p>Premium video & graphic design assets — completely free. Made by creators, for creators.</p>
+      <!-- SOCIAL ICONS (ORIGINAL BRAND SVGs) -->
+      <div class="socials" style="margin-top:20px">
+        <a href="https://www.instagram.com/AAPKA_USERNAME" target="_blank" title="Instagram" class="instagram">
+          <svg viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/AAPKA_PAGE" target="_blank" title="Facebook" class="facebook">
+          <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@AAPKA_CHANNEL" target="_blank" title="YouTube" class="youtube">
+          <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@AAPKA_USERNAME" target="_blank" title="TikTok" class="tiktok">
+          <svg viewBox="0 0 24 24" fill="#000000"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a href="https://wa.me/923XXXXXXXXX" target="_blank" title="WhatsApp" class="whatsapp">
+          <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Assets</h4>
+      <a href="#assets" onclick="setFilter('video',null)">Video Templates</a>
+      <a href="#assets" onclick="setFilter('graphic',null)">Graphics</a>
+      <a href="#assets" onclick="setFilter('fonts',null)">Fonts</a>
+      <a href="#assets" onclick="setFilter('templates',null)">Templates</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">License</a>
+      <a href="#">DMCA</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 PixelForge. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalBody"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const ASSETS = [
+  {id:1, name:'YouTube Intro Template', cat:'video', icon:'▶️', tags:['4K','Premiere Pro'], desc:'Professional 10-second YouTube intro with smooth transitions and animated text.', downloadUrl:'#'},
+  {id:2, name:'Instagram Reel Transitions', cat:'video', icon:'🎬', tags:['HD','After Effects'], desc:'20 smooth transitions for Instagram Reels and TikTok videos.', downloadUrl:'#'},
+  {id:3, name:'Lower Thirds Pack', cat:'video', icon:'📺', tags:['4K','Premiere Pro'], desc:'Minimal lower thirds for news, interviews, and vlogs.', downloadUrl:'#'},
+  {id:4, name:'Gradient Background Pack', cat:'graphic', icon:'🌈', tags:['4K','Photoshop'], desc:'50 abstract gradient backgrounds for thumbnails and posts.', downloadUrl:'#'},
+  {id:5, name:'Social Media Icons', cat:'graphic', icon:'💬', tags:['SVG','AI'], desc:'Modern social media icon set in SVG and AI formats.', downloadUrl:'#'},
+  {id:6, name:'YouTube Thumbnail Templates', cat:'templates', icon:'🖼️', tags:['PSD','Editable'], desc:'10 ready-to-edit YouTube thumbnail templates.', downloadUrl:'#'},
+  {id:7, name:'Arabic Calligraphy Fonts', cat:'fonts', icon:'✒️', tags:['TTF','OTF'], desc:'Beautiful Arabic calligraphy fonts for Urdu and Arabic designs.', downloadUrl:'#'},
+  {id:8, name:'Modern Sans-Serif Font', cat:'fonts', icon:'🔤', tags:['TTF','OTF'], desc:'Clean modern sans-serif font for web and print.', downloadUrl:'#'},
+  {id:9, name:'Particle Overlays', cat:'video', icon:'✨', tags:['4K','Premiere Pro'], desc:'Particle overlays for adding magic to your videos.', downloadUrl:'#'},
+  {id:10, name:'Mockup Templates', cat:'templates', icon:'📱', tags:['PSD','Editable'], desc:'Device mockups for showcasing your designs.', downloadUrl:'#'},
+  {id:11, name:'Light Leaks Pack', cat:'video', icon:'☀️', tags:['4K','After Effects'], desc:'Beautiful light leak overlays for cinematic look.', downloadUrl:'#'},
+  {id:12, name:'Icon Pack — 200 Icons', cat:'graphic', icon:'🎯', tags:['SVG','AI'], desc:'200 minimal icons for UI and web design.', downloadUrl:'#'}
+];
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+function renderAssets(){
+  const grid = document.getElementById('assetsGrid');
+  let filtered = ASSETS;
+  if(currentFilter !== 'all') filtered = filtered.filter(a => a.cat === currentFilter);
+  if(currentSearch) filtered = filtered.filter(a => 
+    a.name.toLowerCase().includes(currentSearch) || 
+    a.desc.toLowerCase().includes(currentSearch) ||
+    a.tags.some(t => t.toLowerCase().includes(currentSearch))
+  );
+  if(!filtered.length){
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--muted)">😕 No assets found. Try changing the filter.</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(a => `
+    <div class="asset-card" onclick="openAsset(${a.id})">
+      <div class="asset-thumb ${a.cat}">
+        <div class="asset-badge">${a.cat}</div>
+        ${a.icon}
+      </div>
+      <div class="asset-info">
+        <h3>${a.name}</h3>
+        <p>${a.desc}</p>
+        <div class="asset-meta">
+          <div class="asset-tags">${a.tags.map(t => `<span>${t}</span>`).join('')}</div>
+          <button class="dl-btn" onclick="event.stopPropagation();downloadAsset(${a.id})">⬇ Free</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setFilter(cat, btn){
+  currentFilter = cat;
+  document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  else {
+    const match = document.querySelector(`.filters button[data-cat="${cat}"]`);
+    if(match) match.classList.add('active');
+  }
+  renderAssets();
+  if(!btn) document.getElementById('assets').scrollIntoView({behavior:'smooth'});
+}
+
+function filterAssets(){
+  currentSearch = document.getElementById('searchInput').value.toLowerCase().trim();
+  renderAssets();
+}
+
+function openAsset(id){
+  const a = ASSETS.find(x => x.id === id);
+  if(!a) return;
+  const modal = document.getElementById('modalBody');
+  modal.innerHTML = `
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div style="font-size:64px;text-align:center;margin-bottom:20px">${a.icon}</div>
+    <h2>${a.name}</h2>
+    <p>${a.desc}</p>
+    <div class="asset-tags" style="margin-bottom:20px">${a.tags.map(t => `<span>${t}</span>`).join('')}</div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" style="flex:1" onclick="downloadAsset(${a.id});closeModal()">⬇ Download Free</button>
+      <button class="btn btn-ghost" onclick="closeModal()">Close</button>
+    </div>
+  `;
+  document.getElementById('modalBg').classList.add('show');
+}
+function closeModal(){ document.getElementById('modalBg').classList.remove('show'); }
+
+function downloadAsset(id){
+  const a = ASSETS.find(x => x.id === id);
+  if(!a) return;
+  if(a.downloadUrl && a.downloadUrl !== '#'){
+    toast(`⬇ Downloading ${a.name}...`);
+    window.open(a.downloadUrl, '_blank');
+  } else {
+    toast(`⚠️ Download link not added yet for ${a.name}`);
+  }
+}
+
+function submitContact(e){
+  e.preventDefault();
+  toast('✅ Message sent! We will reply soon.');
+  e.target.reset();
+}
+
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function toggleNav(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeNav(){
+  document.getElementById('navLinks').classList.remove('open');
+}
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+renderAssets();
+console.log('%c🎨 PixelForge — Professional Assets Website', 'color:#14b8a6;font-size:16px;font-weight:bold');
+</script>
+
+</body>
+</html>
